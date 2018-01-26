@@ -1,31 +1,56 @@
-<form fxLayout="column">
+<form [formGroup]="form" fxLayout="column">
+    <mat-form-field fxFlex="100">
+      <input matInput formControlName = "nome" placeholder="Nome">
+        <mat-error *ngIf="form.controls['nome'].hasError('required')">
+          Campo Obrigatório
+        </mat-error>
+    </mat-form-field>
   <mat-form-field fxFlex="100">
-    <input matInput placeholder="Nome">
+    <input matInput formControlName = "email" placeholder="E-mail">
+      <mat-error *ngIf="form.controls['email'].hasError('required')">
+        Campo Obrigatório
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+        Email inválido
+      </mat-error>      
   </mat-form-field>
-  <mat-form-field fxFlex="100">
-    <input matInput placeholder="E-mail">
+<div fxFlex="100" fxLayout="row">
+  <mat-form-field fxFlex="47">
+    <input matInput formControlName = "login" placeholder="Login">
+      <mat-error *ngIf="form.controls['login'].hasError('required')">
+        Campo Obrigatório
+      </mat-error>      
   </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Login">
-  </mat-form-field>
-  <mat-form-field fxFlex="47" fxFlexOffset="6">
-      <mat-select placeholder="Perfil">
-        <mat-option value="ADMINISTRADOR">Administrador</mat-option>
-        <mat-option value="PROFESSOR">Professor</mat-option>
-        <mat-option value="ALUNO">Aluno</mat-option>
-      </mat-select>
-  </mat-form-field>
-  <div>
+  <span fxFlex="6"></span>
+  <mat-form-field fxFlex="47">
+    <mat-select placeholder="Perfis" formControlName = "perfil" name="item">
+      <mat-option *ngFor= "let perfil of perfis" [value]="perfil.id">
+        {{ perfil.descricao }}
+      </mat-option>      
+    </mat-select>
+    <mat-error *ngIf="form.controls['perfil'].hasError('required')">
+      Campo Obrigatório
+    </mat-error>    
+</mat-form-field>
+</div>
+  <div div fxFlex="100" fxLayout="row">
     <mat-form-field fxFlex="47">
-        <input matInput type="password" placeholder="Senha">
-      </mat-form-field>
-    <mat-form-field fxFlex="47" fxFlexOffset="6">
-      <input matInput type="password" placeholder="Confirmação">
+      <input matInput formControlName = "senha" type="password" placeholder="Senha">
+        <mat-error *ngIf="form.controls['senha'].hasError('required')">
+          Campo Obrigatório
+        </mat-error>          
+    </mat-form-field>
+    <span fxFlex="6"></span>
+    <mat-form-field fxFlex="47">
+      <input matInput formControlName = "confirmacao" type="password" placeholder="Confirmação">
+        <mat-error *ngIf="form.controls['confirmacao'].hasError('passwordEquals')">
+          Senhas não conferem
+        </mat-error>        
     </mat-form-field>    
   </div>
-  <div fxFlex="100" flLayout="row" fxLayoutAlign="space-between">
-    <button mat-raised-button type="button" color="primary">Cadastrar</button>
-    <button mat-raised-button type="button" color="warn">Cancelar</button>
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between">
+    <button mat-raised-button [disabled]="!form.valid" type="button" color="primary">Cadastrar</button>
+    <button mat-raised-button type="button" color="warn" routerLink="/main/usuario/consulta">Cancelar</button>
   </div>
   <br/>  
 </form>

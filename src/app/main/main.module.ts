@@ -7,6 +7,8 @@ import { MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatCa
 import { FormularioComponent } from './usuario/formulario/formulario.component';
 import { ConsultaComponent } from './usuario/consulta/consulta.component';
 import { FlexLayoutModule} from '@angular/flex-layout'
+import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
+import { UsuarioService } from './usuario/usuario.service';
 
 @NgModule({
   imports: [
@@ -25,8 +27,13 @@ import { FlexLayoutModule} from '@angular/flex-layout'
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  declarations: [MainComponent, ConsultaComponent, FormularioComponent]
+  declarations: [MainComponent, ConsultaComponent, FormularioComponent],
+
+  providers: [FormBuilder, UsuarioService]
+  
 })
 export class MainModule { }

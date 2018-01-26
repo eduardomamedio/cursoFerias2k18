@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { UsuarioService } from '../usuario.service';
 
 @Component({
   selector: 'app-consulta',
@@ -9,9 +10,13 @@ import { MatTableDataSource } from '@angular/material';
 export class ConsultaComponent implements OnInit {
 
   displayedColumns = ['nome', 'login', 'email', 'perfil', 'id'];
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  dataSource = null;
 
-  constructor() { }
+  constructor(private _usuarioService: UsuarioService) { 
+    this.dataSource = new MatTableDataSource<any>(
+      this._usuarioService.listar()
+    )
+  }
 
   ngOnInit() {
   }
