@@ -9,6 +9,7 @@ import { ConsultaComponent } from './usuario/consulta/consulta.component';
 import { FlexLayoutModule} from '@angular/flex-layout'
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { UsuarioService } from './usuario/usuario.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -29,11 +30,11 @@ import { UsuarioService } from './usuario/usuario.service';
     MatInputModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   declarations: [MainComponent, ConsultaComponent, FormularioComponent],
-
-  providers: [FormBuilder, UsuarioService]
+  providers: [FormBuilder, UsuarioService, HttpClient]
   
 })
 export class MainModule { }

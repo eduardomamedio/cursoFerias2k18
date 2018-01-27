@@ -31,11 +31,11 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 
-        <button mat-icon-button color="primary" matTooltip="Editar">
+      <mat-cell *matCellDef="let usuario"> 
+        <button mat-icon-button (click)="editar(usuario.id)" color="primary" matTooltip="Editar">
           <mat-icon>edit</mat-icon>
         </button> 
-        <button mat-icon-button color="danger" matTooltip="Excluir">
+        <button mat-icon-button (click)="excluir(usuario.id)" color="danger" matTooltip="Excluir">
           <mat-icon>delete</mat-icon>
         </button> 
       </mat-cell>
