@@ -1,0 +1,56 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Descricao Column -->
+    <ng-container matColumnDef="descricao">
+      <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+      <mat-cell *matCellDef="let disciplina"> {{disciplina.descricao}} </mat-cell>
+    </ng-container>
+
+    <!-- Instrutores Column -->
+    <ng-container matColumnDef="instrutores">
+      <mat-header-cell *matHeaderCellDef>Iinstrutores </mat-header-cell>
+      <mat-cell *matCellDef="let disciplina"> {{disciplina.instrutores.length}} </mat-cell>
+    </ng-container>
+
+    <!-- Data Início Column -->
+    <ng-container matColumnDef="dataInicio">
+      <mat-header-cell *matHeaderCellDef> Data Início </mat-header-cell>
+      <mat-cell *matCellDef="let disciplina"> {{disciplina.dataInicio | date: 'dd/MM/yyyy'}} </mat-cell>
+    </ng-container>
+
+    <!-- Data Término Column -->
+    <ng-container matColumnDef="dataTermino">
+      <mat-header-cell *matHeaderCellDef> Data Término </mat-header-cell>
+      <mat-cell *matCellDef="let disciplina"> {{disciplina.dataTermino | date: 'dd-MM-yyyy'}} </mat-cell>
+    </ng-container>
+
+    <!-- Segmento Column -->
+    <ng-container matColumnDef="segmento">
+      <mat-header-cell *matHeaderCellDef> Segmento </mat-header-cell>
+      <mat-cell *matCellDef="let disciplina"> {{disciplina.segmento}} </mat-cell>
+    </ng-container>    
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let disciplina"> 
+        <button mat-icon-button (click)="editar(disciplina.id)" color="primary" matTooltip="Editar">
+          <mat-icon>edit</mat-icon>
+        </button> 
+        <button mat-icon-button (click)="excluir(disciplina.id)" color="danger" matTooltip="Excluir">
+          <mat-icon>delete</mat-icon>
+        </button> 
+      </mat-cell>
+    </ng-container>
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <button color="primary" routerLink="/main/disciplina/adicionar" mat-fab>
+      <mat-icon aria-label="Adicionar" matTooltip="Incluir Disciplina">add</mat-icon>
+  </button>
+</div>
